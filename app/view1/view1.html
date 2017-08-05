@@ -1,116 +1,26 @@
 
 <div class="container" style="padding-top: 30px;">
-  <div class="row">
+
+
+<div class="row">
     <div class="col-sm-12" style="padding-bottom: 25px;">
       <span style="padding-right: 10px;">
-      <button type="button" class="btn btn-outline-primary">Clear selections</button></span>
+      <button type="button" class="btn btn-outline-primary">Clear All Selections</button></span>
       <span style="padding-right: 10px;">
-      <button type="button" class="btn btn-outline-warning">Shuffle group counts</button></span>
-      <button type="button" class="btn btn-outline-success">Save and Lock</button>
+      <button type="button" class="btn btn-outline-warning">Change Group Size</button></span>
+      <button type="button" class="btn btn-outline-success">Save and Download</button>
     </div>
   </div>
   <div class="row" style="padding-bottom: 25px;">
-    <div class="col-sm-4">
-      <h5>Sunday Group #1</h5>
-      <h6>Group Count: {{ count }}</h6>
+    <div ng-repeat="(key, value) in counter" class="col-md-4" style="padding-bottom: 35px;">
+        <h6>{{key}}</h6>
+        <span>Participant count: {{value}} </span>
       <ul class="list-group">
         <li class="list-group-item disabled">Primary</li>
         <li class="list-group-item">Primary</li>
         <li class="list-group-item">Primary</li>
         <li class="list-group-item">Back-up</li>
         <li class="list-group-item">Back-up</li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <h5>Sunday Group #2</h5>
-      <h6>Group Count: {{ count }}</h6>
-      <ul class="list-group">
-        <li class="list-group-item disabled">Person 1</li>
-        <li class="list-group-item">Person #2</li>
-        <li class="list-group-item">Person #3</li>
-        <li class="list-group-item">Person #4</li>
-        <li class="list-group-item">Person #5</li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <h5>Sunday Group #3</h5>
-      <h6>Group Count: {{ count }}</h6>
-      <ul class="list-group">
-        <li class="list-group-item disabled">Person 1</li>
-        <li class="list-group-item">Person #2</li>
-        <li class="list-group-item">Person #3</li>
-        <li class="list-group-item">Person #4</li>
-        <li class="list-group-item">Person #5</li>
-      </ul>
-    </div>
-  </div>
-  <div class="row" style="padding-bottom: 25px;">
-    <div class="col-sm-4">
-      <h5>Monday Group #1</h5>
-      <h6>Group Count: {{ count }}</h6>
-      <ul class="list-group">
-        <li class="list-group-item disabled">Person 1</li>
-        <li class="list-group-item">Person #2</li>
-        <li class="list-group-item">Person #3</li>
-        <li class="list-group-item">Person #4</li>
-        <li class="list-group-item">Person #5</li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <h5>Monday Group #2</h5>
-      <h6>Group Count: {{ count }}</h6>
-      <ul class="list-group">
-        <li class="list-group-item disabled">Person 1</li>
-        <li class="list-group-item">Person #2</li>
-        <li class="list-group-item">Person #3</li>
-        <li class="list-group-item">Person #4</li>
-        <li class="list-group-item">Person #5</li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <h5>Monday Group #3</h5>
-      <h6>Group Count: {{ count }}</h6>
-      <ul class="list-group">
-        <li class="list-group-item disabled">Primary</li>
-        <li class="list-group-item">Primary</li>
-        <li class="list-group-item">Backup</li>
-        <li class="list-group-item">Person #4</li>
-        <li class="list-group-item">Person #5</li>
-      </ul>
-    </div>
-  </div>
-  <div class="row" style="padding-bottom: 25px;">
-    <div class="col-sm-4">
-      <h5>Tuesday Group #1</h5>
-      <h6>Group Count: {{ count }}</h6>
-      <ul class="list-group">
-        <li class="list-group-item disabled">Person 1</li>
-        <li class="list-group-item">Person #2</li>
-        <li class="list-group-item">Person #3</li>
-        <li class="list-group-item">Person #4</li>
-        <li class="list-group-item">Person #5</li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <h5>Tuesday Group #2</h5>
-      <h6>Group Count: {{ count }}</h6>
-      <ul class="list-group">
-        <li class="list-group-item disabled">Person 1</li>
-        <li class="list-group-item">Person #2</li>
-        <li class="list-group-item">Person #3</li>
-        <li class="list-group-item">Person #4</li>
-        <li class="list-group-item">Person #5</li>
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <h5>Tuesday Group #3</h5>
-      <h6>Group Count: {{ count }}</h6>
-      <ul class="list-group">
-        <li class="list-group-item disabled">Person 1</li>
-        <li class="list-group-item">Person #2</li>
-        <li class="list-group-item">Person #3</li>
-        <li class="list-group-item">Person #4</li>
-        <li class="list-group-item">Person #5</li>
       </ul>
     </div>
   </div>

@@ -1,0 +1,22 @@
+<div class="container" style="padding-top: 30px;">
+
+
+<h6> Groups page </h5>
+  <div class="row" style="padding-bottom: 25px;">
+    <div ng-repeat="choice in myArray" class="col-md-4" style="padding-bottom: 35px;">
+        <h6>{{choice.choice}}</h6>
+        <b>Moderator: </b>
+        <br>
+        <b>Group members: </b>
+        <div ng-repeat="member in choice.members">
+          <span>{{member}} </span>
+      <!-- <ul class="list-group">
+        <li class="list-group-item disabled">Primary</li>
+        <li class="list-group-item">Primary</li>
+        <li class="list-group-item">Primary</li>
+        <li class="list-group-item">Back-up</li>
+        <li class="list-group-item">Back-up</li>
+      </ul> -->
+    </div>
+  </div>
+</div>
