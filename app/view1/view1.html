@@ -8,20 +8,29 @@
       <button type="button" class="btn btn-outline-primary">Clear All Selections</button></span>
       <span style="padding-right: 10px;">
       <button type="button" class="btn btn-outline-warning">Change Group Size</button></span>
-      <button type="button" class="btn btn-outline-success">Save and Download</button>
+      <!-- <button type="button" class="btn btn-outline-success">Save and Download</button> -->
     </div>
   </div>
   <div class="row" style="padding-bottom: 25px;">
-    <div ng-repeat="(key, value) in counter" class="col-md-4" style="padding-bottom: 35px;">
-        <h6>{{key}}</h6>
-        <span>Participant count: {{value}} </span>
-      <ul class="list-group">
-        <li class="list-group-item disabled">Primary</li>
-        <li class="list-group-item">Primary</li>
-        <li class="list-group-item">Primary</li>
-        <li class="list-group-item">Back-up</li>
-        <li class="list-group-item">Back-up</li>
-      </ul>
+    <div ng-repeat="item in myArray" class="col-md-4" style="padding-bottom: 35px;">
+      <div class="card">
+        <div class="card-block">
+          <div class="card-header">
+            <h6 class="card-title">{{item.choice}}</h6>
+            <span>Participant count: {{item.members.length}} </span>
+            <div class="card-text">
+            Primary:<br>
+              <div ng-repeat="moderator in item.moderatorsPrimary">
+                <form class="form-control">
+                  <input type="radio" ng-model="moderatorPrimary" value={{moderator}}>  {{moderator}}
+                </form>
+                <!-- <ul class="list-group">
+                  <li class="list-group-item">(P){{moderator}}</li>
+                </ul> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>

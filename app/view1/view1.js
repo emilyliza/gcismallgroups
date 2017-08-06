@@ -14,39 +14,82 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', 'dataFactory', function($scope, dataFactory) {
+.controller('View1Ctrl', ['$scope', 'dataFactory', 'modFactory', function($scope, dataFactory, modFactory) {
 
   $scope.dataArray = [];
-  $scope.counter = {};
   $scope.namesArray = [];
+  $scope.members = {};
+  $scope.myArray = [];
+  $scope.moderator = [];
+
+function getModerators() {
+      modFactory.getModerators()
+          .then(function (response) {
+              console.log(response);
+              $scope.moderators = response.data;
+              var data = $scope.moderators.feed.entry;
+              console.log("wer're getting the data");
+              getModeratorAvailability(data);
+          }, function (error) {
+              $scope.status = 'Unable to load moderator data: ' + error.message;
+          });
+    }
+  getModerators();
+
+  function getModeratorAvailability(data){
+    for (var i = 0; i < data.length; i++) {
+      for (var p in $scope.myArray) {
+          var choice = $scope.myArray[p].choice;
+          if ((choice === "Sundays - 10am PT / 5pm UTC") &&
+              (data[i].gsx$sundays1000am.$t === "Yes")){
+                $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+          if ((choice === "Sundays - 12pm PT / 7pm UTC") &&
+              (data[i].gsx$sundays1200pm.$t === "Yes")){
+                $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+          if ((choice === "Sundays - 5pm PT / 12am UTC") &&
+              (data[i].gsx$sundays500pm.$t === "Yes")){
+                $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+          if ((choice === "Sundays - 7pm PT / 2am UTC") &&
+              (data[i].gsx$sundays700pm.$t === "Yes")){
+                $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+          if ((choice === "Mondays - 10am PT / 5pm UTC") &&
+              (data[i].gsx$mondays1000am.$t === "Yes")){
+                $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+          if ((choice === "Mondays - 12pm PT / 7pm UTC") &&
+              (data[i].gsx$mondays1200pm.$t === "Yes")){
+                $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+          // if ((choice === "Mondays - 5pm PT / 12am UTC") &&
+          //     (data[i].gsx$mondays500am.$t === "Yes")){
+          //       $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          // }
+          // if ((choice === "Mondays - 7pm PT / 2am UTC") &&
+          //     (data[i].gsx$mondays700am.$t === "Yes")){
+          //       $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          // }
+
+    }
+  }
+}
 
   function getParticipants() {
       dataFactory.getParticipants()
           .then(function (response) {
               $scope.participants = response.data;
               var data = $scope.participants.feed.entry;
-              getCount(data);
-              getNames(data);
+              getMembers(data);
           }, function (error) {
               $scope.status = 'Unable to load participant data: ' + error.message;
           });
     }
     getParticipants();
 
-    function getCount(data) {
-      $scope.count = 0;
-      for (var i = 0; i < data.length; i++) {
-          $scope.dataArray.push(data[i].gsx$choice.$t);
-      }
-      $scope.dataArray.forEach(function(x) {
-          $scope.counter[x] = ($scope.counter[x] || 0) + 1
-      });
-      return $scope.counter;
-    }
-
-    $scope.members = {};
-    function getNames(data) {
-
+    function getMembers(data) {
       for (var i = 0; i < data.length; i++) {
         var choice = data[i].gsx$choice.$t;
         if (!$scope.members[choice]) {
@@ -54,21 +97,35 @@ angular.module('myApp.view1', ['ngRoute'])
         }
         $scope.members[choice].push(data[i].gsx$firstname.$t + " " + data[i].gsx$lastname.$t);
       }
-      $scope.myArray = [];
       for (var choice in $scope.members) {
-        $scope.myArray.push({choice: choice, members: $scope.members[choice]});
+        $scope.myArray.push({choice: choice, members: $scope.members[choice], moderatorsPrimary: [], moderatorsBackup: []});
       }
-      console.log($scope.myArray);
     }
+
   }])
 
   .factory('dataFactory', ['$http', function($http) {
-    var urlBase = 'https://spreadsheets.google.com/feeds/list/1d7G644KI9A-nz-dxmXdgru5P1feNXXyZsP1NUYygJpA/1/public/values?alt=json';
+
+    var urlPar = 'https://spreadsheets.google.com/feeds/list/1d7G644KI9A-nz-dxmXdgru5P1feNXXyZsP1NUYygJpA/1/public/values?alt=json';
 
     var dataFactory = {};
 
     dataFactory.getParticipants = function () {
-        return $http.get(urlBase);
+        return $http.get(urlPar);
     };
     return dataFactory;
+  }])
+
+  .factory('modFactory', ['$http', function($http) {
+
+    var urlMod = 'https://spreadsheets.google.com/feeds/list/1_jhPWqVt_LzrOslwuFqbU8pzOvXjBQ8OfFO5SRolK30/1/public/values?alt=json';
+
+    var modFactory = {};
+
+    modFactory.getModerators = function(){
+      return $http.get(urlMod);
+    }
+
+    return modFactory;
+
   }]);
