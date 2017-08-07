@@ -1,4 +1,4 @@
-'use strict';
+(function() {
 
 angular.module('myApp.view1', ['ngRoute'])
 
@@ -20,21 +20,12 @@ angular.module('myApp.view1', ['ngRoute'])
   $scope.namesArray = [];
   $scope.members = {};
   $scope.myArray = [];
-  $scope.moderator = [];
+  $scope.selectedPerson = {};
 
-function getModerators() {
-      modFactory.getModerators()
-          .then(function (response) {
-              console.log(response);
-              $scope.moderators = response.data;
-              var data = $scope.moderators.feed.entry;
-              console.log("wer're getting the data");
-              getModeratorAvailability(data);
-          }, function (error) {
-              $scope.status = 'Unable to load moderator data: ' + error.message;
-          });
-    }
-  getModerators();
+  $scope.setModerator = function(index, moderator){
+    console.log(index, moderator);
+    console.log($scope.selectedPerson);
+  };
 
   function getModeratorAvailability(data){
     for (var i = 0; i < data.length; i++) {
@@ -44,39 +35,80 @@ function getModerators() {
               (data[i].gsx$sundays1000am.$t === "Yes")){
                 $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
           }
+          if ((choice === "Sundays - 10am PT / 5pm UTC") &&
+              (data[i].gsx$sundays1000am.$t === "Only if need-be")){
+                $scope.myArray[p].moderatorsBackup.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
           if ((choice === "Sundays - 12pm PT / 7pm UTC") &&
               (data[i].gsx$sundays1200pm.$t === "Yes")){
                 $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+          if ((choice === "Sundays - 12pm PT / 7pm UTC") &&
+              (data[i].gsx$sundays1200pm.$t === "Only if need-be")){
+                $scope.myArray[p].moderatorsBackup.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
           }
           if ((choice === "Sundays - 5pm PT / 12am UTC") &&
               (data[i].gsx$sundays500pm.$t === "Yes")){
                 $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
           }
+          if ((choice === "Sundays - 5pm PT / 12am UTC") &&
+              (data[i].gsx$sundays500pm.$t === "Only if need-be")){
+                $scope.myArray[p].moderatorsBackup.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
           if ((choice === "Sundays - 7pm PT / 2am UTC") &&
               (data[i].gsx$sundays700pm.$t === "Yes")){
                 $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+          if ((choice === "Sundays - 7pm PT / 2am UTC") &&
+              (data[i].gsx$sundays700pm.$t === "Only if need-be")){
+                $scope.myArray[p].moderatorsBackup.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
           }
           if ((choice === "Mondays - 10am PT / 5pm UTC") &&
               (data[i].gsx$mondays1000am.$t === "Yes")){
                 $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
           }
+          if ((choice === "Mondays - 10am PT / 5pm UTC") &&
+              (data[i].gsx$mondays1000am.$t === "Only if need-be")){
+                $scope.myArray[p].moderatorsBackup.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
           if ((choice === "Mondays - 12pm PT / 7pm UTC") &&
               (data[i].gsx$mondays1200pm.$t === "Yes")){
                 $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
           }
-          // if ((choice === "Mondays - 5pm PT / 12am UTC") &&
-          //     (data[i].gsx$mondays500am.$t === "Yes")){
-          //       $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
-          // }
-          // if ((choice === "Mondays - 7pm PT / 2am UTC") &&
-          //     (data[i].gsx$mondays700am.$t === "Yes")){
-          //       $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
-          // }
-
+          if ((choice === "Mondays - 12pm PT / 7pm UTC") &&
+              (data[i].gsx$mondays1200pm.$t === "Only if need-be")){
+                $scope.myArray[p].moderatorsBackup.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+          if ((choice === "Mondays - 5pm PT / 12am UTC") &&
+              (data[i].gsx$mondays500pm.$t === "Yes")){
+                $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+          if ((choice === "Mondays - 5pm PT / 12am UTC") &&
+              (data[i].gsx$mondays500pm.$t === "Only if need-be")){
+                $scope.myArray[p].moderatorsBackup.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+          if ((choice === "Mondays - 7pm PT / 2am UTC") &&
+              (data[i].gsx$mondays700pm.$t === "Yes")){
+                $scope.myArray[p].moderatorsPrimary.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+          if ((choice === "Mondays - 7pm PT / 2am UTC") &&
+              (data[i].gsx$mondays700pm.$t === "Only if need-be")){
+                $scope.myArray[p].moderatorsBackup.push(data[i].gsx$name.$t + " " + data[i].gsx$last.$t);
+          }
+      }
     }
   }
-}
-
+  function getModerators() {
+      modFactory.getModerators()
+          .then(function (response) {
+              $scope.moderators = response.data;
+              var data = $scope.moderators.feed.entry;
+              getModeratorAvailability(data);
+          }, function (error) {
+              $scope.status = 'Unable to load moderator data: ' + error.message;
+          });
+    }
+  getModerators();
   function getParticipants() {
       dataFactory.getParticipants()
           .then(function (response) {
@@ -129,3 +161,4 @@ function getModerators() {
     return modFactory;
 
   }]);
+})();

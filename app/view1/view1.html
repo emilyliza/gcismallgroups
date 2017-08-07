@@ -17,17 +17,22 @@
         <div class="card-block">
           <div class="card-header">
             <h6 class="card-title">{{item.choice}}</h6>
-            <span>Participant count: {{item.members.length}} </span>
+            <span style="padding-bottom: 10px;">Participant count: {{item.members.length}} </span>
             <div class="card-text">
-            Primary:<br>
-              <div ng-repeat="moderator in item.moderatorsPrimary">
-                <form class="form-control">
-                  <input type="radio" ng-model="moderatorPrimary" value={{moderator}}>  {{moderator}}
-                </form>
-                <!-- <ul class="list-group">
-                  <li class="list-group-item">(P){{moderator}}</li>
-                </ul> -->
+              <div style="padding-top: 10px;" ng-if="selectedPerson.length > 0">
+                Moderator: <b> {{selectedPerson}}</b><br>
               </div>
+            <form>
+              <div class="form-group">
+                <label for="selectedPerson" style="padding-top: 20px;">Primary Moderators:</label>
+                <select class="form-control" ng-model="selectedPerson"  ng-change="setModerator(item.choice, selectedPerson);"
+                  ng-options="moderator as moderator for moderator in item.moderatorsPrimary track by item.choice"><option value=""></option>
+                </select>
+                <label for="selectedPerson" style="padding-top: 20px;">Backup Moderators:</label>
+                <select class="form-control" ng-model="selectedPerson" ng-change="setModerator($parent.$index, selectedPerson);"
+                  ng-options="moderator as moderator for moderator in item.moderatorsBackup track by item.choice"><option value=""></option>
+                </select>
+            </form>
             </div>
           </div>
         </div>
