@@ -16,10 +16,12 @@ angular.module('myApp.view1', ['ngRoute'])
 
 .controller('View1Ctrl', ['$scope', '$rootScope','dataFactory', 'modFactory', function($scope, $rootScope, dataFactory, modFactory) {
 
+  console.log("here is the selected person ", $scope.selectedPerson);
+
   $scope.dataArray = [];
   $scope.namesArray = [];
   $scope.members = {};
-  $scope.myArray = [];
+  $rootScope.myArray = [];
   $scope.selectedModerator = [];
 
   $scope.setModerator = function(index, moderator){
