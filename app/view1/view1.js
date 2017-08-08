@@ -14,20 +14,27 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', 'dataFactory', 'modFactory', function($scope, dataFactory, modFactory) {
+.controller('View1Ctrl', ['$scope', '$rootScope','dataFactory', 'modFactory', function($scope, $rootScope, dataFactory, modFactory) {
 
   $scope.dataArray = [];
   $scope.namesArray = [];
   $scope.members = {};
   $scope.myArray = [];
+  $scope.selectedModerator = [];
 
   $scope.setModerator = function(index, moderator){
     for (var p in $scope.myArray) {
       var choice = $scope.myArray[p].choice;
       if (choice === index){
         $scope.myArray[p].selectedPerson = moderator;
+        $scope.selectedModerator.push({choice: choice, moderator: moderator});
+      }
+      var index = $scope.selectedModerator.indexOf(choice);
+      if (index !== -1) {
+          $scope.selectedModerator[moderator] = moderator;
       }
     }
+    console.log($scope.selectedModerator);
     console.log(index, moderator);
     console.log($scope.myArray);
   };
