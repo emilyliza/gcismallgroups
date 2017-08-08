@@ -14,9 +14,7 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', '$rootScope','dataFactory', 'modFactory', function($scope, $rootScope, dataFactory, modFactory) {
-
-  console.log("here is the selected person ", $scope.selectedPerson);
+.controller('View1Ctrl', ['$scope', '$timeout', '$rootScope','dataFactory', 'modFactory', function($scope, $timeout, $rootScope, dataFactory, modFactory) {
 
   $scope.dataArray = [];
   $scope.namesArray = [];
@@ -36,9 +34,9 @@ angular.module('myApp.view1', ['ngRoute'])
           $scope.selectedModerator[moderator] = moderator;
       }
     }
-    console.log($scope.selectedModerator);
-    console.log(index, moderator);
-    console.log($scope.myArray);
+    // console.log($scope.selectedModerator);
+    // console.log(index, moderator);
+    // console.log($scope.myArray);
   };
 
   function getModeratorAvailability(data){
@@ -113,12 +111,15 @@ angular.module('myApp.view1', ['ngRoute'])
     }
     return $scope.myArray;
   }
-  function getModerators() {
+
+function getModerators() {
       modFactory.getModerators()
           .then(function (response) {
               $scope.moderators = response.data;
               var data = $scope.moderators.feed.entry;
-              getModeratorAvailability(data);
+              $timeout(function() {
+                  getModeratorAvailability(data);
+              },50);
           }, function (error) {
               $scope.status = 'Unable to load moderator data: ' + error.message;
           });
