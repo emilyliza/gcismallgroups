@@ -19,18 +19,18 @@
             <h6 class="card-title">{{item.choice}}</h6>
             <span style="padding-bottom: 10px;">Participant count: {{item.members.length}} </span>
             <div class="card-text">
-              <div style="padding-top: 10px;" ng-if="selectedPerson.length > 0">
-                Moderator: <b> {{selectedPerson}}</b><br>
+              <div style="padding-top: 10px;" ng-if="item.selectedPerson.length > 0">
+                Moderator: <b> {{item.selectedPerson}}</b><br>
               </div>
             <form>
               <div class="form-group">
-                <label for="selectedPerson" style="padding-top: 20px;">Primary Moderators:</label>
-                <select class="form-control" ng-model="selectedPerson"  ng-change="setModerator(item.choice, selectedPerson);"
-                  ng-options="moderator as moderator for moderator in item.moderatorsPrimary track by item.choice"><option value=""></option>
+                <label for="item.selectedPerson" style="padding-top: 20px;">Primary Moderators:</label>
+                <select class="form-control" ng-model="item.selectedPerson" ng-change="setModerator(item.choice, item.selectedPerson);"
+                  ng-options="moderator as moderator for moderator in item.moderatorsPrimary">
                 </select>
-                <label for="selectedPerson" style="padding-top: 20px;">Backup Moderators:</label>
-                <select class="form-control" ng-model="selectedPerson" ng-change="setModerator($parent.$index, selectedPerson);"
-                  ng-options="moderator as moderator for moderator in item.moderatorsBackup track by item.choice"><option value=""></option>
+                <label for="item.selectedPerson" style="padding-top: 20px;">Backup Moderators:</label>
+                <select class="form-control" ng-model="item.selectedPerson" ng-change="setModerator(item.choice, item.selectedPerson);"
+                  ng-options="moderator as moderator for moderator in item.moderatorsBackup"><option value=""></option>
                 </select>
             </form>
             </div>

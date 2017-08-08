@@ -20,11 +20,16 @@ angular.module('myApp.view1', ['ngRoute'])
   $scope.namesArray = [];
   $scope.members = {};
   $scope.myArray = [];
-  $scope.selectedPerson = {};
 
   $scope.setModerator = function(index, moderator){
+    for (var p in $scope.myArray) {
+      var choice = $scope.myArray[p].choice;
+      if (choice === index){
+        $scope.myArray[p].selectedPerson = moderator;
+      }
+    }
     console.log(index, moderator);
-    console.log($scope.selectedPerson);
+    console.log($scope.myArray);
   };
 
   function getModeratorAvailability(data){
@@ -130,7 +135,7 @@ angular.module('myApp.view1', ['ngRoute'])
         $scope.members[choice].push(data[i].gsx$firstname.$t + " " + data[i].gsx$lastname.$t);
       }
       for (var choice in $scope.members) {
-        $scope.myArray.push({choice: choice, members: $scope.members[choice], moderatorsPrimary: [], moderatorsBackup: []});
+        $scope.myArray.push({choice: choice, members: $scope.members[choice], moderatorsPrimary: [], moderatorsBackup: [], selectedPerson: ""});
       }
     }
 
