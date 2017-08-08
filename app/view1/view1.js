@@ -8,7 +8,7 @@ angular.module('myApp.view1', ['ngRoute'])
     templateUrl: 'view1/groups.html',
     controller: 'View1Ctrl'
   })
-  .when('/view1', {
+  .when('/moderators', {
     templateUrl: 'view1/view1.html',
     controller: 'View1Ctrl'
   });
@@ -111,6 +111,7 @@ angular.module('myApp.view1', ['ngRoute'])
           }
       }
     }
+    return $scope.myArray;
   }
   function getModerators() {
       modFactory.getModerators()
