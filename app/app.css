@@ -23,8 +23,13 @@
   content: "|";
   padding-right: 0.3em;
 }
-
-option:disabled { color: green; }
+input[type=number]{
+    width: 50px;
+}
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 1;
+}
+/*option:disabled { color: green; }
 .disabled {color: green;}
 :disabled {color: green; }
 disabled {color: green; }
@@ -36,4 +41,4 @@ input:disabled {
 }
 select:disabled {
     background: #dddddd;
-}
+}*/

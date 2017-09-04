@@ -8,11 +8,14 @@
       <span ng-show="loaded" class="ng-hide" style="padding-right: 10px;">
       <button ng-click="clearSelectedModerators();" type="button" class="btn btn-outline-primary">Clear All Selections</button></span>
       <span ng-show="loaded" class="ng-hide" style="padding-right: 10px;">
-      <button type="button" class="btn btn-outline-warning">Change Group Size</button></span>
+      <button type="button" ng-click="ShowHide();" class="btn btn-outline-warning">Change Group Size</button></span>
         <span ng-show="loaded" class="ng-hide" style="padding-right: 10px;">
       <button type="button" ng-click="reset();" class="btn btn-outline-success">Reset</button></span>
     </div>
   </div>
+<div style="padding-bottom: 20px;" ng-hide="IsHidden">Change group maximum size to:
+  <span style= "padding-left: 10px;"><input ng-model="groupSize" type="number" ng-init="groupSize = 12"/></span><span style= "padding-left: 10px;"><button type="button" ng-click="saveGroupSize();" class="btn btn-sm btn-warning">Save</button></span>
+</div>
   <div class="row" style="padding-bottom: 25px;">
     <div ng-repeat="item in myArray" class="col-md-4" style="padding-bottom: 35px;">
       <div class="card">

@@ -22,7 +22,16 @@ angular.module('myApp.view1', ['ngRoute'])
   $scope.members = {};
   $scope.myArray = $localStorage.myArray || [];
   $scope.loaded = $localStorage.loaded || false;
-  console.log($scope.loaded);
+  $scope.groupSize = false;
+  $scope.IsHidden = true;
+
+  $scope.ShowHide = function () {
+      $scope.IsHidden = $scope.IsHidden ? false : true;
+  }
+
+  $scope.saveGroupSize = function(){
+    alert("this feature is coming soon!");
+  }
 
   $scope.reset = function(){
     $localStorage.$reset();
@@ -34,7 +43,6 @@ angular.module('myApp.view1', ['ngRoute'])
   })
 
   $scope.$watch('myArray', function() {
-    console.log("here is the length", $scope.myArray.length);
     $localStorage.myArray = $scope.myArray;
   });
 
@@ -82,6 +90,11 @@ angular.module('myApp.view1', ['ngRoute'])
     }
   }
 
+  $scope.changeGroupSize = function (){
+    for (var p in $scope.myArray){
+
+    }
+  }
 
   function getModeratorAvailability(data){
     $timeout(function() {
