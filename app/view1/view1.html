@@ -1,7 +1,6 @@
 
 <div class="container" style="padding-top: 30px;">
 
-
 <div class="row">
     <div class="col-sm-12" style="padding-bottom: 25px;">
       <span style="padding-right: 10px;">
@@ -12,7 +11,7 @@
     </div>
   </div>
   <div class="row" style="padding-bottom: 25px;">
-    <div ng-repeat="item in myArray" class="col-md-4" style="padding-bottom: 35px;">
+    <div ng-repeat="item in data" class="col-md-4" style="padding-bottom: 35px;">
       <div class="card">
         <div class="card-block">
           <div class="card-header">
@@ -26,11 +25,11 @@
               <div class="form-group">
                 <label for="item.selectedPerson" style="padding-top: 20px;">Primary Moderators:</label>
                 <select class="form-control" data-ng-model="item.selectedPerson" ng-change="setModerator(item.choice, item.selectedPerson);"
-                  data-ng-options="moderator as moderator for moderator in item.moderatorsPrimary">
+                  data-ng-options="moderator.name as moderator.name disable when moderator.selectable for moderator in item.moderatorsPrimary" >
                 </select>
                 <label for="item.selectedPerson" style="padding-top: 20px;">Backup Moderators:</label>
                 <select class="form-control" data-ng-model="item.selectedPerson" ng-change="setModerator(item.choice, item.selectedPerson);"
-                  data-ng-options="moderator as moderator for moderator in item.moderatorsBackup">
+                  data-ng-options="moderator.name as moderator.name disable when moderator.selectable for moderator in item.moderatorsBackup">
                 </select>
             </form>
             </div>

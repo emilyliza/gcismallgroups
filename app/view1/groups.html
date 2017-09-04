@@ -1,5 +1,5 @@
 <div class="container" style="padding-top: 30px;">
-
+Name : {{$storage.chosenModerators}}
   <div class="row">
       <div class="col-sm-12" style="padding-bottom: 25px;">
         <span style="padding-right: 10px;">
@@ -18,7 +18,7 @@
          <div class="card-header">
             <h6 class="card-title" style="padding-top: 10px;">{{choice.choice}}<br>
 
-            <h6>Moderator: <span ng-if "choice.selectedPerson.length > 0">{{choice.selectedModerator}}</span><h6>
+            <h6>Moderator: <span ng-if "choice.selectedPerson.length > 0">{{choice.selectedPerson}}</span><h6>
           </div>
           <div class="card-text" style="padding: 5px;">
             <b>Group members: </b>
