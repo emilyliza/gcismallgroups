@@ -23,9 +23,17 @@
   content: "|";
   padding-right: 0.3em;
 }
-.is-selectable {
-  color: green;
+
+option:disabled { color: green; }
+.disabled {color: green;}
+:disabled {color: green; }
+disabled {color: green; }
+option:disabled {
+    background: red;
 }
-.not-selectable {
-  color: red;
+input:disabled {
+    background: #dddddd;
+}
+select:disabled {
+    background: #dddddd;
 }

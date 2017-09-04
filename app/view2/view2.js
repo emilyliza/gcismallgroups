@@ -1,4 +1,4 @@
-'use strict';
+(function() {
 
 angular.module('myApp.view2', ['ngRoute'])
 
@@ -25,3 +25,5 @@ angular.module('myApp.view2', ['ngRoute'])
   return dataFactory;
 
 }]);
+
+})();

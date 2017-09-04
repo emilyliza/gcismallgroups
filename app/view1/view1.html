@@ -3,11 +3,13 @@
 
 <div class="row">
     <div class="col-sm-12" style="padding-bottom: 25px;">
+      <span style="padding-right: 10px;" ng-show="!loaded" class="ng-hide">
+      <button ng-click="loadData();" type="button" class="btn btn-outline-success">Load data</button></span>
       <span style="padding-right: 10px;">
-      <button ng-click="updateData();" type="button" class="btn btn-outline-primary">Clear All Selections</button></span>
+      <button ng-click="clearSelectedModerators();" type="button" class="btn btn-outline-primary">Clear All Selections</button></span>
       <span style="padding-right: 10px;">
       <button type="button" class="btn btn-outline-warning">Change Group Size</button></span>
-      <button type="button" class="btn btn-outline-success">Publish</button>
+      <!-- <button type="button" class="btn btn-outline-success">Publish</button> -->
     </div>
   </div>
   <div class="row" style="padding-bottom: 25px;">
@@ -24,8 +26,8 @@
             <form>
               <div class="form-group">
                 <label for="item.selectedPerson" style="padding-top: 20px;">Primary Moderators:</label>
-                <select class="form-control" data-ng-model="item.selectedPerson" ng-change="setModerator(item.choice, item.selectedPerson);"
-                  data-ng-options="moderator.name as moderator.name disable when moderator.selectable for moderator in item.moderatorsPrimary" >
+                <select class="form-control" ng-style="myStyle" data-ng-model="item.selectedPerson" ng-change="setModerator(item.choice, item.selectedPerson);"
+                  data-ng-options="moderator.name as moderator.name disable when moderator.selectable for moderator in item.moderatorsPrimary">
                 </select>
                 <label for="item.selectedPerson" style="padding-top: 20px;">Backup Moderators:</label>
                 <select class="form-control" data-ng-model="item.selectedPerson" ng-change="setModerator(item.choice, item.selectedPerson);"
