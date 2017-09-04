@@ -4,14 +4,14 @@
 <div class="row">
     <div class="col-sm-12" style="padding-bottom: 25px;">
       <span style="padding-right: 10px;">
-      <button type="button" class="btn btn-outline-primary">Clear All Selections</button></span>
+      <button ng-click="updateData();" type="button" class="btn btn-outline-primary">Clear All Selections</button></span>
       <span style="padding-right: 10px;">
       <button type="button" class="btn btn-outline-warning">Change Group Size</button></span>
       <button type="button" class="btn btn-outline-success">Publish</button>
     </div>
   </div>
   <div class="row" style="padding-bottom: 25px;">
-    <div ng-repeat="item in data" class="col-md-4" style="padding-bottom: 35px;">
+    <div ng-repeat="item in myArray" class="col-md-4" style="padding-bottom: 35px;">
       <div class="card">
         <div class="card-block">
           <div class="card-header">
