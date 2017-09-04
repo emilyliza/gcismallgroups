@@ -24,7 +24,10 @@ angular.module('myApp.view1', ['ngRoute'])
   $scope.loaded = $localStorage.loaded || false;
   console.log($scope.loaded);
 
-  // $localStorage.$reset();
+  $scope.reset = function(){
+    $localStorage.$reset();
+    $scope.myArray = [];
+  }
 
   $scope.$watch('loaded', function(){
     $localStorage.loaded = $scope.loaded;
