@@ -5,11 +5,12 @@
     <div class="col-sm-12" style="padding-bottom: 25px;">
       <span style="padding-right: 10px;" ng-show="!loaded" class="ng-hide">
       <button ng-click="loadData();" type="button" class="btn btn-outline-success">Load data</button></span>
-      <span style="padding-right: 10px;">
+      <span ng-show="loaded" class="ng-hide" style="padding-right: 10px;">
       <button ng-click="clearSelectedModerators();" type="button" class="btn btn-outline-primary">Clear All Selections</button></span>
-      <span style="padding-right: 10px;">
+      <span ng-show="loaded" class="ng-hide" style="padding-right: 10px;">
       <button type="button" class="btn btn-outline-warning">Change Group Size</button></span>
-      <button type="button" ng-click="reset();" class="btn btn-outline-success">Reset</button>
+        <span ng-show="loaded" class="ng-hide" style="padding-right: 10px;">
+      <button type="button" ng-click="reset();" class="btn btn-outline-success">Reset</button></span>
     </div>
   </div>
   <div class="row" style="padding-bottom: 25px;">
