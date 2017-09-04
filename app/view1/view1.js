@@ -227,6 +227,7 @@ function getModerators() {
   $scope.clearSelectedModerators = function () {
     for (var p in $scope.myArray){
       $scope.myArray[p].selectedPerson = "";
+      $scope.myArray[p].selectable = false;
     }
   }
 
