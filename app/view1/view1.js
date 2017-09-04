@@ -30,10 +30,11 @@ angular.module('myApp.view1', ['ngRoute'])
   }
 
   $scope.saveGroupSize = function(){
-    alert("this feature is coming soon!");
+    alert("This feature is coming soon!");
   }
 
   $scope.reset = function(){
+    $scope.IsHidden = true;
     $localStorage.$reset();
     $scope.myArray = [];
   }
