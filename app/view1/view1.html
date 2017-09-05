@@ -1,5 +1,5 @@
 
-<div class="container" style="padding-top: 30px;">
+<div class="container" style="padding-top: 30px; font-size: 14px;">
 
 <div class="row">
     <div class="col-sm-12" style="padding-bottom: 25px;">
@@ -17,15 +17,15 @@
   <span style= "padding-left: 10px;"><input ng-model="groupSize" type="number" ng-init="groupSize = 12"/></span><span style= "padding-left: 10px;"><button type="button" ng-click="saveGroupSize();" class="btn btn-sm btn-warning">Save</button></span>
 </div>
   <div class="row" style="padding-bottom: 25px;">
-    <div ng-repeat="item in myArray" class="col-md-4" style="padding-bottom: 35px;">
+    <div ng-repeat="item in myArray" class="col-md-3" style="padding-bottom: 35px;">
       <div class="card">
         <div class="card-block">
           <div class="card-header">
-            <h6 class="card-title">{{item.choice}}</h6>
+            <h6 class="card-title" style="font-size: 14px;">{{item.choice}}</h6>
             <span style="padding-bottom: 10px;">Participant count: {{item.members.length}} </span>
             <div class="card-text">
               <div style="padding-top: 10px;" ng-if="item.selectedPerson.length > 0">
-                Moderator: <b> {{item.selectedPerson}}</b><br>
+                Moderator: <br><b> {{item.selectedPerson}}</b><br>
               </div>
             <form>
               <div class="form-group">
