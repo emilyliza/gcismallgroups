@@ -15,11 +15,12 @@
       <div class="card">
         <div class="card-block">
          <div class="card-header">
-            <h6 class="card-title" style="padding-top: 10px;">{{choice.choice}}<br>
+            <h6 class="card-title" style="padding-top: 10px; font-size: 14px;">{{choice.choice}}</h6>
+            Moderator: <br><b>{{choice.selectedPerson ? choice.selectedPerson : "TBD"}}</b>
             <!-- <span ng-if "choice.selectedPerson.length > 0"></span> -->
-            <h6>Moderator: <b>{{choice.selectedPerson ? choice.selectedPerson : "TBD"}}</b><h6>
           </div>
           <div class="card-text" style="padding: 12px;">
+
             <b>Group members: </b>
             <div ng-repeat="member in choice.members">
             <span>{{member}} </span>
