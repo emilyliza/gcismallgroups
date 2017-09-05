@@ -32,6 +32,9 @@ angular.module('myApp.view1', ['ngRoute'])
   $scope.saveGroupSize = function(){
     alert("This feature is coming soon!");
   }
+  $scope.autoAssign = function(){
+    alert("This feature will auto select moderators based on availability!");
+  }
 
   $scope.reset = function(){
     $scope.IsHidden = true;
