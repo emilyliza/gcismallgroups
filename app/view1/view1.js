@@ -218,16 +218,21 @@ function getModerators() {
   // getModerators();
 
   $scope.loadData = function (){
-    console.log("are we getting here?");
     getModerators();
     getParticipants();
     $scope.$storage.loaded = true;
-    console.log($scope.$storage.loaded);
   }
   $scope.clearSelectedModerators = function () {
     for (var p in $scope.myArray){
+      var moderators_primary = $scope.myArray[p].moderatorsPrimary;
+      var moderators_backup = $scope.myArray[p].moderatorsBackup;
       $scope.myArray[p].selectedPerson = "";
-      $scope.myArray[p].selectable = false;
+      for (var key in moderators_primary ){
+        moderators_primary[key].selectable = false;
+      }
+      for (var key in moderators_backup ){
+        moderators_backup[key].selectable = false;
+      }
     }
   }
 
